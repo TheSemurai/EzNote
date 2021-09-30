@@ -31,8 +31,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Controllers\" />
-    <Folder Include="Models\" />
+    <Folder Include="Models\CategoryModels\" />
+    <Folder Include="Models\UserModels\" />
+    <Folder Include="Models\TemplateModels\" />
+    <Folder Include="Models\NoteModels\" />
   </ItemGroup>
 
   <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">

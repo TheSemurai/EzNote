@@ -16,7 +16,6 @@
 
   <ItemGroup>
     <Folder Include="Interfaces\" />
-    <Folder Include="Entities\" />
     <Folder Include="Configs\" />
     <Folder Include="Repositories\" />
   </ItemGroup>
