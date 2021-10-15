@@ -11,7 +11,8 @@ namespace DomainLibrary.Infrastucture.Enums
         public enum TypeOfGender
         {
             Male,
-            Female
+            Female,
+            Undefined
         }
     }
 }
