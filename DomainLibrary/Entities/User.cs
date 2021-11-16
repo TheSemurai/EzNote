@@ -1,7 +1,7 @@
 ﻿using System;
-using DomainLibrary.Infrastucture.Enums;
+using DomainLibrary.Enums;
 
-namespace DataAccess.Entities
+namespace DomainLibrary.Entities
 {
     public class User
     {
@@ -11,7 +11,8 @@ namespace DataAccess.Entities
         public DateTime DateOfBirth { get; set; }
         public string PhoneNumber { get; set; }
         public string Email { get; set; }
-        public GenderEnum.TypeOfGender Gender { get; set; }
+        public Gender Gender { get; set; }
         public bool Role { get; set; }
+        public string Country { get; set; }
     }
 }

@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
@@ -13,8 +13,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="AutoMapper" Version="10.1.1" />
-    <PackageReference Include="Microsoft.AspNetCore.SpaServices.Extensions" Version="5.0.11" />
+    <PackageReference Include="Microsoft.AspNetCore.SpaServices.Extensions" Version="5.0.9" />
   </ItemGroup>
 
   <ItemGroup>
@@ -32,10 +31,8 @@
 
   <ItemGroup>
     <Folder Include="Controllers\" />
-    <Folder Include="Models\CategoryModels\" />
-    <Folder Include="Models\UserModels\" />
-    <Folder Include="Models\TemplateModels\" />
-    <Folder Include="Models\NoteModels\" />
+    <Folder Include="Models\" />
+    <Folder Include="ViewModels\" />
   </ItemGroup>
 
   <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">
