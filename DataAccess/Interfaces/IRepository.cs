@@ -1,14 +1,16 @@
-﻿using System.Collections.Generic;
-
+﻿using System;
+using System.Collections.Generic;
+using System.Linq.Expressions;
 
 namespace DataAccess.Interfaces
 {
-    public interface IRepository<T>
+    public interface IRepository<TEntity>
     {
-        ICollection<T> GetAll();
-        T GetById(int Id);
-        void Insert(T _repositoryObject);
-        void Update(T _repositoryObject);
-        void Delete(T _repositoryObject);
+        IEnumerable<TEntity> GetAll();
+        TEntity Get(int id);
+        void Insert(TEntity _repositoryObject);
+        void Update(TEntity _repositoryObject);
+        void Delete(int id);
+        public IEnumerable<TEntity> Find(Expression<Func<TEntity, bool>> predicate);
     }
 }

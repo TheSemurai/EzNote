@@ -2,38 +2,87 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
+using Microsoft.EntityFrameworkCore;
+using DomainLibrary.Entities;
 
 namespace DataAccess.Services
 {
-    public abstract class Repository<T> : IRepository<T>
+    public class Repository<TEntity> : IRepository<TEntity> where TEntity : class
     {
         private Context _context;
-
         public Repository(Context context) => _context = context;
 
-        public virtual void Delete(T _repositoryObject)
+        public IEnumerable<TEntity> Find(Expression<Func<TEntity, bool>> predicate)
         {
-            _context.Remove(_repositoryObject);
+            try
+            {
+                return _context.Set<TEntity>().Where(predicate);
+            }
+            catch (Exception e)
+            {
+                throw new Exception($"Cannot find the {typeof(TEntity)}s with | {predicate.ToString()} | predicates.", e);
+            }
         }
 
-        public ICollection<T> GetAll()
+        public TEntity Get(int id)
         {
-            return (ICollection <T>) _context.Notes.ToList();
+            try
+            {
+                return _context.Set<TEntity>().Find(id);
+            }
+            catch (Exception e)
+            {
+                throw new Exception($"Cannot get {typeof(TEntity)} #{id}.", e);
+            }
         }
 
-        public virtual T GetById(int Id)
+        public void Delete(int id)
         {
-            throw new NotImplementedException();
+            try
+            {
+                _context.Set<TEntity>().Remove(Get(id));
+            }
+            catch (Exception e)
+            {
+                throw new Exception($"Cannot remove {typeof(TEntity)} #{id}.", e);
+            }
         }
 
-        public virtual void Insert(T _repositoryObject)
+        public IEnumerable<TEntity> GetAll()
         {
-            throw new NotImplementedException();
+            try
+            {
+                return _context.Set<TEntity>().ToList();
+            }
+            catch (Exception e)
+            {
+                throw new Exception($"Cannot get all {typeof(TEntity)}s.", e);
+            }
         }
 
-        public virtual void Update(T _repositoryObject)
+        public void Insert(TEntity _repositoryObject)
         {
-            throw new NotImplementedException();
+            try
+            {
+                _context.Set<TEntity>().Add(_repositoryObject);
+            }
+            catch (Exception e)
+            {
+                throw new Exception($"Cannot add new {typeof(TEntity)}.", e);
+            }
+        }
+
+        public void Update(TEntity _repositoryObject)
+        {
+            try
+            {
+                _context.Set<TEntity>().Update(_repositoryObject);
+            }
+            catch (Exception e)
+            {
+                throw new Exception($"Cannot update values of {typeof(TEntity)} obj: {_repositoryObject}.", e);
+            }
         }
     }
 }
