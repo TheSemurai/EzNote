@@ -84,5 +84,29 @@ namespace DataAccess.Services
                 throw new Exception($"Cannot update values of {typeof(TEntity)} obj: {_repositoryObject}.", e);
             }
         }
+
+        public IQueryable<TEntity> AsQueryable()
+        {
+            try
+            {
+                return _context.Set<TEntity>().AsQueryable();
+            }
+            catch (Exception e)
+            {
+                throw new Exception($"Cannot return IQueryable<{typeof(TEntity)}>.", e);
+            }
+        }
+
+        public IEnumerable<TEntity> AsEnumerable()
+        {
+            try
+            {
+                return _context.Set<TEntity>().AsEnumerable();
+            }
+            catch (Exception e)
+            {
+                throw new Exception($"Cannot return IEnumerable<{typeof(TEntity)}>.", e);
+            }
+        }
     }
 }
