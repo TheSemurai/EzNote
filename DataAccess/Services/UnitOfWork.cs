@@ -7,7 +7,7 @@ namespace DataAccess.Services
     public class UnitOfWork : IUnitOfWork
     {
         private Context _context;
-        private Repository<Note> _noteRepository;
+        private IRepository<Note> _noteRepository;
         private IRepository<Category> _categoryRepository;
         private IRepository<Template> _templateRepository;
         private IRepository<User> _userRepository;
