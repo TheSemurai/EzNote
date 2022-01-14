@@ -1,9 +1,10 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using DomainLibrary.Entities;
 
+
 namespace DataAccess
 {
-    class NoteContext : DbContext
+    public class Context : DbContext
     {
         public DbSet<Note> Notes { get; set; }
 
@@ -13,7 +14,7 @@ namespace DataAccess
 
         public DbSet<User> Users { get; set; }
 
-        public NoteContext() : base()
+        public Context() : base()
         {
             //some logic
         }
