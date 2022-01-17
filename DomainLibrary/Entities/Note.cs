@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace DomainLibrary.Entities
 {
@@ -8,7 +9,7 @@ namespace DomainLibrary.Entities
         public string Name { get; set; }
         public string TextPlace { get; set; }
         public string Description { get; set; }
-        public Category Category { get; set; }
+        public ICollection<Category> Categories { get; set; }
 
     }
 }

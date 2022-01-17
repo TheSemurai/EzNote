@@ -7,6 +7,6 @@ namespace DomainLibrary.Entities
         public long Id { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
-        public ICollection<Note> Item { get; set; }
+        public ICollection<Note> CategoryItem { get; set; }
     }
 }
