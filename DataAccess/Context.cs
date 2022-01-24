@@ -14,14 +14,14 @@ namespace DataAccess
 
         public DbSet<User> Users { get; set; }
 
-        public Context() : base()
+        public Context(DbContextOptions<Context> options) : base(options)
         {
             //some logic
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(@"Server=.\SQLEXPRESS;Database=EzNoteDB;Trusted_Connection=True;");
+            
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
