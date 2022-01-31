@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using DomainLibrary.Entities;
+using DataAccess.Configs;
 
 
 namespace DataAccess
@@ -14,19 +15,28 @@ namespace DataAccess
 
         public DbSet<User> Users { get; set; }
 
-        public Context() : base()
+        public Context(DbContextOptions<Context> options) : base(options)
         {
-            //some logic
+            //TODO
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(@"Server=.\SQLEXPRESS;Database=EzNoteDB;Trusted_Connection=True;");
+            //TODO
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            //some logic
+            modelBuilder.ApplyConfiguration(new NoteEntityConfiguration());
+
+            modelBuilder.ApplyConfiguration(new CategoryEntityConfiguration());
+
+            modelBuilder.ApplyConfiguration(new TemplateEntityConfiguration());
+
+            modelBuilder.ApplyConfiguration(new UserEntityConfiguration());
+
+
+            base.OnModelCreating(modelBuilder);
         }
     }
 }
