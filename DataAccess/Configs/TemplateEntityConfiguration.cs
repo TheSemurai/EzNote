@@ -22,7 +22,8 @@ namespace DataAccess.Configs
                 .HasMaxLength(80);
 
             builder
-                .Property(p => p.Note)
+                .HasOne(h => h.Note)
+                .WithMany()
                 .IsRequired();
         }
     }

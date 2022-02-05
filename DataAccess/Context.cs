@@ -27,6 +27,8 @@ namespace DataAccess
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.HasDefaultSchema("dbo");
+
             modelBuilder.ApplyConfiguration(new NoteEntityConfiguration());
 
             modelBuilder.ApplyConfiguration(new CategoryEntityConfiguration());

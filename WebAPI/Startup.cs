@@ -1,4 +1,6 @@
 using DataAccess;
+using DataAccess.Interfaces;
+using DataAccess.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -8,16 +10,16 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
+
 namespace WebAPI
 {
     public class Startup
     {
+        private IConfiguration _configuration { get; }
         public Startup(IConfiguration configuration)
         {
-            Configuration = configuration;
+            _configuration = configuration;
         }
-
-        public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
@@ -25,7 +27,9 @@ namespace WebAPI
             services.AddControllersWithViews();
 
             services.AddDbContextPool<Context>(
-                options => options.UseSqlServer("EzNoteDBConnection"));
+                options => options.UseSqlServer(_configuration.GetConnectionString("EzNoteDBConnection")));
+
+            services.AddTransient<IUnitOfWork, UnitOfWork>();
             // In production, the Angular files will be served from this directory
             services.AddSpaStaticFiles(configuration =>
             {
